@@ -7,7 +7,7 @@ const Home = () => {
   const [storeData, setStoreData] = useState();
   const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
   let apiKey = 'aDqsslCfk5JIQEOOEt6vuuQT09wCJ5lkWCBXpo3roYnoCvi2WPMIvZF7';
-  // let apiUrl = 'http://api.pexels.com/v1/curated?per_page=10&page=1';
+  // let apiUrl = 'http://api.pexels.com/v1/curated?per_page=10&page=1'; do not use this one-notwork
   let apiUrl = "https://api.pexels.com/v1/search?query=people&per_page=20";
 
   function apiCall(){
@@ -18,7 +18,7 @@ const Home = () => {
       },
     })
       .then(response=>response.json())
-      .then(data=> console.log(data))
+      .then(data=> setStoreData(data.photos))
     }
 
   useEffect(() => {
@@ -33,7 +33,16 @@ const Home = () => {
   // },[])
 
   return (
-  <div>Hello</div>
+<>
+<div className='mainBox'>
+{storeData && storeData.map((val)=>(
+<img src={val.src.original}/>
+))
+}
+
+</div>
+
+</>
   )
 };
 

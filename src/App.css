@@ -14,3 +14,19 @@ padding: 10px;
 object-fit: cover;
 
 }
+.search_wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* modals component */
+.targetWholeModal{
+background-color: red;
+position: relative;
+z-index: 1000;
+top: 50%;
+left: 50%;
+}
+.parentModal{
+  background-color: pink;
+}

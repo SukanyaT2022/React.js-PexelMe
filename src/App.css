@@ -30,3 +30,8 @@ left: 50%;
 .parentModal{
   background-color: pink;
 }
+
+.modal-content{
+  width: 700px !important;
+  /* height: 400px !important; */
+}

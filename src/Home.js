@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css'
-import Modals from './Component/Modals';
-// import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 
 const Home = () => {
   // 1 Api call
@@ -11,6 +11,20 @@ const Home = () => {
   const [storeData, setStoreData] = useState();
   const [search,setSearch] = useState("people");
   const [page,setPage] = useState(1)
+  const [modalImage,setModalImage] = useState()
+
+  //false hide it until user clik image
+  const [show, setShow] = useState(false);
+
+  //false img will be hidden
+  const handleClose = () => {
+    setShow(false); 
+  };
+  const handleShow = (image) => {
+    setShow(true);
+    setModalImage(image)
+  };
+
   // const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
   let apiKey = 'c19t5LBUeXItCyO5nb5bpds50rtTKwmX7xOeFa4PnEBN8jabAxpjQW6U';
   // let apiUrl = `https://api.pexels.com/v1/search?query=${search}`;
@@ -38,30 +52,35 @@ setPage(page-1)
   const nextButtonHandle =()=>{
     setPage(page+1)   
   }
-
   return (
     <div>
-  <Modals/>
+   
+      <Modal show={show} onHide={handleClose}>
+        {/* Bootstrap close button */}
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body>
+          {modalImage && <img src={modalImage} style={{width:"100%",height:'auto'}}/>}
+        </Modal.Body>
+      </Modal>
+    <div className='search_wrapper'>
+    <input type='text' onChange={(e)=>setSearch(e.target.value)}/>
+    <button onClick={searchButtonHandler}>Search</button>
 
-<div className='search_wrapper'>
-<input type='text' onChange={(e)=>setSearch(e.target.value)}/>
-<button onClick={searchButtonHandler}>Search</button>
-
-  </div>
-
-      <div className="mainBox_wrapImg">
-        {storeData && storeData.map((val) =>
-        //  console.log(val)
-         <img src={val.src.small} className='imgIndividual'/>
-         )
-         }
-    
       </div>
-      <div className='text-center'> 
-      <button onClick={prevButtonHandle}>Prev</button>
-         <button onClick={nextButtonHandle}>Next</button>
+
+          <div className="mainBox_wrapImg">
+            {storeData && storeData.map((val) =>
+            //  console.log(val)
+              <img src={val.src.small} className='imgIndividual' onClick={()=>handleShow(val.src.medium)}/>
+            )
+            }
+        
+          </div>
+          <div className='text-center'> 
+          <button onClick={prevButtonHandle}>Prev</button>
+            <button onClick={nextButtonHandle}>Next</button>
+          </div>
       </div>
-    </div>
   );
 };
 

@@ -1,20 +1,16 @@
-import React from 'react'
-import Home from './Home'
-import Home2 from './Home2'
-import { Modal } from 'react-bootstrap'
-import Modals from './Component/Modals'
+import React from 'react';
+import Home from './Home';
+import Home2 from './Home2';
+import { Modal } from 'react-bootstrap';
+import Modals from './Component/Modals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 const App = () => {
   return (
     <div>
-      {/* <Modals/> */}
-<Home/>
-{/* <Home2/> */}
-
+      <Home />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

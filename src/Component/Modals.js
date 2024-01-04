@@ -9,7 +9,7 @@ function Modals() {
   const handleShow = () => setShow(true);
 
   return (
-    <>
+    <div>
       <Button variant="primary" onClick={handleShow}>
         Launch demo modal
       </Button>
@@ -28,7 +28,7 @@ function Modals() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 }
 
